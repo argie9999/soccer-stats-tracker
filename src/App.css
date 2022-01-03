@@ -36,3 +36,62 @@
     transform: rotate(360deg);
   }
 }
+
+
+
+
+
+body {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  background-color: #424254;
+}
+
+button {
+  display: inline-block;
+  font-size: 1.3em;
+  border-color: black;
+  border-width: 5px;
+  border-radius: 2em;
+  padding: 0.8em;
+  margin: 0.2em;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.button-container {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.stop {
+  background-color: #f74553;
+}
+
+.start {
+  background-color: #60b99a;
+}
+
+.timer {
+  font-size: 3em;
+  text-shadow: 0.5px 0.5px black;
+  color: #eedd99;
+}
+
+.small-timer {
+  font-size: 1em;
+  text-shadow: 0.5px 0.5px black;
+  color: #eedd11;
+}
+
+.team-labels {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.team-label-name {
+  flex: 1 0 21%; /* explanation below */
+  margin: 5px;
+  height: 20px;
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 18px;
+}
