@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import Header from "./Header"
 import GameClock from "./GameClock";
@@ -20,7 +20,31 @@ export default function StatsTracker() {
   const [homeTime, setHomeTime] = useState(0);
   const [guestTime, setGuestTime] = useState(0);
   const [hasBall, setHasBall] = useState("HOME");
+
   const dispatch = useAppDispatch()
+
+  const handleUserKeyPress = (e) => {
+    if (e.keyCode === 72 || e.keyCode === 37) { // h for home, or left arrow
+      handleHomeTeam()
+    }
+    else if (e.keyCode === 71 || e.keyCode === 39) { // g for guest, or right arrow
+      handleGuestTeam()
+    }
+    else if (e.keyCode === 78 || e.keyCode === 40) { // n for pause, or down arrow
+      handlePause()
+    }
+    else {
+      console.log(e.keyCode)
+    }
+  }
+
+  const cbRef = useRef(handleUserKeyPress);
+  useEffect(() => { cbRef.current = handleUserKeyPress; }); // update after each render
+  useEffect(() => {
+      const cb = e => cbRef.current(e); // then use most recent cb value
+      window.addEventListener("keydown", cb);
+      return () => { window.removeEventListener("keydown", cb) };
+  }, []);
 
   const handleClear = (event) => {
     dispatch({ type: 'END_GAME'})
@@ -87,4 +111,3 @@ export default function StatsTracker() {
 
 
 // TODO: Bryan - end game ask
-// TODO: Bryan - clear all the scores

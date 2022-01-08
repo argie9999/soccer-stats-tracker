@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { AppInitialState, AppReducer } from './AppReducer'
 
 const AppStateContext = React.createContext()
@@ -28,16 +28,4 @@ export function useAppDispatch() {
     throw new Error('ERROR: useAppDispatch must be used inside of AppProvider')
   }
   return context
-}
-
-export function useAppInitialization() {
-  const [hasLoadedData, setHasLoadedData] = React.useState(false)
-  const dispatch = useAppDispatch()
-
-  useEffect(() => {
-    if (!hasLoadedData) {
-      dispatch({ type: 'LOAD_DATA' })
-      setHasLoadedData(true)
-    }
-  }, [dispatch, hasLoadedData])
 }

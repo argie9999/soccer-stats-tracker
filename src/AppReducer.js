@@ -13,33 +13,57 @@ const initialStats = {
 
 const AppInitialState = {
   lapse: 0,
-  home: {...initialStats},
-  guest: {...initialStats}
+  home: {...initialStats, name: 'HOME' },
+  guest: {...initialStats, name: 'GUEST' }
 }
 
 const AppReducer = (state, action) => {
-  const change = { ...state }
   switch (action.type) {
-    case 'INCREMENT': {
-      change[action.team][action.dataType] = change[action.team][action.dataType] + 1
-      break
+    case 'INCREMENT_HOME': {
+      return {
+        ...state,
+        home: {
+          ...state.home,
+          [action.dataType]: state.home[action.dataType] + 1
+        }
+      };
     }
-    case 'DECREMENT': {
-      change[action.team][action.dataType] = Math.max(change[action.team][action.dataType] - 1, 0)
-      break
+    case 'DECREMENT_HOME': {
+      return {
+        ...state,
+        home: {
+          ...state.home,
+          [action.dataType]: Math.max(state.home[action.dataType] - 1, 0)
+        }
+      };
+    }
+    case 'INCREMENT_GUEST': {
+      return {
+        ...state,
+        guest: {
+          ...state.guest,
+          [action.dataType]: state.guest[action.dataType] + 1
+        }
+      };
+    }
+    case 'DECREMENT_GUEST': {
+      return {
+        ...state,
+        guest: {
+          ...state.guest,
+          [action.dataType]: Math.max(state.guest[action.dataType] - 1, 0)
+        }
+      };
     }
     case 'END_GAME': {
-      change.lapse = 0;
-      change.home = initialStats;
-      change.guest = initialStats;
-      break;
+      return {
+        ...AppInitialState
+      }
     }
     default: {
       console.error(`ERROR: Unhandled action type: ${action.type}`) // eslint-disable-line
     }
   }
-
-  return { ...change }
 }
 
 export { AppInitialState, AppReducer }

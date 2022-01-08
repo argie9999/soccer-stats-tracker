@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import React, { useState } from "react";
+import React from "react";
 import { css } from '@emotion/react';
 import { useAppDispatch, useAppState } from "./AppState";
 
@@ -26,6 +26,7 @@ const buttonCss = css`
   font-size: 30px;
 `
 
+// TODO: Bryan - finish this
 const rightButtonCss = css`
   margin-right: 0;
 `
@@ -40,19 +41,19 @@ export default function Counter({ title, dataType, backgroundColor, fontSize }) 
   `
 
   const incrementHomeCount = () => {
-    dispatch({ type: 'INCREMENT', team: 'home', dataType })
+    dispatch({ type: 'INCREMENT_HOME', dataType })
   }
 
   const incrementGuestCount = () => {
-    dispatch({ type: 'INCREMENT', team: 'guest', dataType })
+    dispatch({ type: 'INCREMENT_GUEST', dataType })
   }
 
   const decrementHomeCount = () => {
-    dispatch({ type: 'DECREMENT', team: 'home', dataType })
+    dispatch({ type: 'DECREMENT_HOME', dataType })
   }
 
   const decrementGuestCount = () => {
-    dispatch({ type: 'DECREMENT_GUEST', team: 'guest', dataType })
+    dispatch({ type: 'DECREMENT_GUEST', dataType })
   }
 
   return (
