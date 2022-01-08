@@ -1,21 +1,25 @@
-/** @jsxImportSource @emotion/react */
-import React from "react";
-import { css, jsx } from '@emotion/react'
+import React, { useState, useEffect } from "react";
 
-import Timer from "./Timer";
+import Header from "./Header"
+import GameClock from "./GameClock";
+
+import Progress from "./Progress";
 import './App.css';
+import PossessionTimer from "./PosessionTimer";
+import Scoreboard from "./Scoreboard";
+import StatsCounters from "./StatsCounters";
 
 const calculateProgress = (homeTime, totalTime) => {
   return (homeTime / totalTime / 100) * 10000;
 };
 
 export default function App() {
-  const [isRunning, setIsRunning] = React.useState(false);
-  const [isPaused, setIsPaused] = React.useState(true);
-  const [time, setTime] = React.useState(0);
-  const [homeTime, setHomeTime] = React.useState(0);
-  const [guestTime, setGuestTime] = React.useState(0);
-  const [hasBall, setHasBall] = React.useState("HOME");
+  const [isRunning, setIsRunning] = useState(false);
+  const [isPaused, setIsPaused] = useState(true);
+  const [time, setTime] = useState(0);
+  const [homeTime, setHomeTime] = useState(0);
+  const [guestTime, setGuestTime] = useState(0);
+  const [hasBall, setHasBall] = useState("HOME");
 
   const handleClear = (event) => {
     setIsRunning(false);
@@ -41,26 +45,9 @@ export default function App() {
     setIsPaused(false);
   };
 
-  const progressCss = css`
-    height: 30px;
-    border: 1px solid black;
-    position: relative;
-    background-color: white;
-
-    &:after {
-      content: "";
-      position: absolute;
-      background: red;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      width: ${calculateProgress(homeTime, time)}%;
-    }
-  `
-
-  React.useEffect(() => {
+  useEffect(() => {
     if (isRunning && isPaused === false) {
-      const delta = 25; // 25 ms
+      const delta = 25;
       let intervalId = setInterval(() => {
         setTime((time) => time + delta);
 
@@ -75,35 +62,27 @@ export default function App() {
     }
   }, [isRunning, isPaused, hasBall]);
 
-  const homePercentage = calculateProgress(homeTime, time);
-  const guestPercentage = calculateProgress(guestTime, time);
+  const homeProgress = calculateProgress(homeTime, time);
+  const guestProgress = calculateProgress(guestTime, time);
 
-  const homeValue = isNaN(homePercentage) ? "0" : Math.round(homePercentage);
-  const guestValue = isNaN(guestPercentage) ? "0" : Math.round(guestPercentage);
+  const homePercentage = isNaN(homeProgress) ? "0" : Math.round(homeProgress);
+  const guestPercentage = isNaN(guestProgress) ? "0" : Math.round(guestProgress);
 
   return (
     <div>
-      <div className="button-container">
-        <h2>Game Clock</h2>
-        <Timer lapse={time} />
-        <button onClick={handleClear}>Clear</button>
-        <button onClick={handlePause}>Pause</button>
-      </div>
-      <hr />
-      <div className="button-container">
-        <h2>Possession Timer</h2>
+      <Header />
+      <GameClock lapse={time} handleEndGame={handleClear} />
+      <Scoreboard />
 
-        <Timer lapse={homeTime} />
-        <button onClick={handleHomeTeam}>Home</button>
-        <button onClick={handleGuestTeam}>Guest</button>
-        <Timer lapse={guestTime} />
+      <PossessionTimer lapse={time} homeTime={homeTime} guestTime={guestTime} handleHome={handleHomeTeam} handleOut={handlePause} handleGuest={handleGuestTeam} />
+      
+      <Progress homePercentage={homePercentage} guestPercentage={guestPercentage} />
 
-        <div className="team-labels">
-          <span className="team-label-name">Home: {homeValue}%</span>
-          <span className="team-label-name">Guest: {guestValue}%</span>
-        </div>
-        <div css={progressCss}></div>
-      </div>
+      <StatsCounters />
     </div>
   );
 }
+
+
+// TODO: Bryan - end game ask
+// TODO: Bryan - clear all the scores

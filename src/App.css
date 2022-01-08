@@ -1,97 +1,11 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-
-
-
-
 body {
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  background-color: #424254;
+  font-family: "Helvetica";
+  background-color: #393E46;
+  color: #232931;
 }
 
 button {
-  display: inline-block;
-  font-size: 1.3em;
-  border-color: black;
-  border-width: 5px;
-  border-radius: 2em;
-  padding: 0.8em;
-  margin: 0.2em;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-}
-
-.button-container {
-  text-align: center;
-  margin: 0 auto;
-}
-
-.stop {
-  background-color: #f74553;
-}
-
-.start {
-  background-color: #60b99a;
-}
-
-.timer {
-  font-size: 3em;
-  text-shadow: 0.5px 0.5px black;
-  color: #eedd99;
-}
-
-.small-timer {
-  font-size: 1em;
-  text-shadow: 0.5px 0.5px black;
-  color: #eedd11;
-}
-
-.team-labels {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.team-label-name {
-  flex: 1 0 21%; /* explanation below */
-  margin: 5px;
-  height: 20px;
-  color: white;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 18px;
+  border: none;
+  background-color: transparent;
+  border-radius: 7px;
 }

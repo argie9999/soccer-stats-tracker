@@ -1,6 +1,6 @@
+/** @jsxImportSource @emotion/react */
 import React from "react";
-
-import './App.css';
+import { css } from '@emotion/react';
 
 const leftPad = (width, n) => {
   if ((n + "").length > width) {
@@ -15,14 +15,20 @@ const getUnits = (lapse) => {
   return {
     min: Math.floor(seconds / 60).toString(),
     sec: Math.floor(seconds % 60).toString(),
-    msec: (seconds % 1).toFixed(3).substring(2)
+    msec: (seconds % 1).toFixed(2).substring(2)
   };
 };
 
-export default function Timer({ lapse }) {
+export default function Timer({ lapse, color }) {
+
+  const timerCss = css`
+    font-size: 1.7em;
+    color: ${color || '#EEEEEE'};
+  `
+
   const { min, sec, msec } = getUnits(lapse);
   return (
-    <span className="timer">
+    <span css={timerCss}>
       <span>{leftPad(2, min)}:</span>
       <span>{leftPad(2, sec)}.</span>
       <span>{msec}</span>
