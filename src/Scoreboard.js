@@ -14,7 +14,7 @@ export default function Scoreboard() {
   return (
     <div css={containerCss}>
       <ScoreboardNames />
-      <Counter title="Goals" fontSize="2.5em" />
+      <Counter title="Goals" dataType="goals" fontSize="2.5em" />
     </div>
   )
 }

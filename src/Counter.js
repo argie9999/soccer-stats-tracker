@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import React, { useState } from "react";
 import { css } from '@emotion/react';
+import { useAppDispatch, useAppState } from "./AppState";
 
 const rowCss = css`
   display: flex;
@@ -29,9 +30,9 @@ const rightButtonCss = css`
   margin-right: 0;
 `
 
-export default function Counter({ title, backgroundColor, fontSize }) {
-  const [homeCount, setHomeCount] = useState(0);
-  const [guestCount, setGuestCount] = useState(0);
+export default function Counter({ title, dataType, backgroundColor, fontSize }) {
+  const dispatch = useAppDispatch()
+  const { home, guest } = useAppState()
 
   const rowBackgroundCss = css`
     background-color: ${backgroundColor};
@@ -39,19 +40,19 @@ export default function Counter({ title, backgroundColor, fontSize }) {
   `
 
   const incrementHomeCount = () => {
-    setHomeCount((count) => count + 1)
+    dispatch({ type: 'INCREMENT', team: 'home', dataType })
   }
 
   const incrementGuestCount = () => {
-    setGuestCount((count) => count + 1)
+    dispatch({ type: 'INCREMENT', team: 'guest', dataType })
   }
 
   const decrementHomeCount = () => {
-    setHomeCount((count) => Math.max(count - 1, 0))
+    dispatch({ type: 'DECREMENT', team: 'home', dataType })
   }
 
   const decrementGuestCount = () => {
-    setGuestCount((count) => Math.max(count - 1, 0))
+    dispatch({ type: 'DECREMENT_GUEST', team: 'guest', dataType })
   }
 
   return (
@@ -60,7 +61,7 @@ export default function Counter({ title, backgroundColor, fontSize }) {
         <button css={buttonCss} onClick={incrementHomeCount}>+</button>
       </div>
       <div css={columnCss}>
-        <span>{homeCount}</span>
+        <span>{home[dataType]}</span>
       </div>
       <div css={columnCss}>
         <button css={buttonCss} onClick={decrementHomeCount}>-</button>
@@ -72,7 +73,7 @@ export default function Counter({ title, backgroundColor, fontSize }) {
         <button css={buttonCss} onClick={incrementGuestCount}>+</button>
       </div>
       <div css={columnCss}>
-        <span>{guestCount}</span>
+        <span>{guest[dataType]}</span>
       </div>
       <div css={columnCss}>
         <button css={buttonCss} onClick={decrementGuestCount}>-</button>
