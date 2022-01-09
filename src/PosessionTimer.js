@@ -49,6 +49,3 @@ export default function PossessionTimer({ lapse, homeTime, guestTime, handleHome
     </div>
   )
 }
-
-// TODO: Bryan - rename "lapse" to gameTime?
-// TODO: Bryan - global state? dispatch

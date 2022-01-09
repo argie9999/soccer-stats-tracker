@@ -108,6 +108,3 @@ export default function StatsTracker() {
     </div>
   );
 }
-
-
-// TODO: Bryan - end game ask

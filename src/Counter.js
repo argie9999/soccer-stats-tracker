@@ -26,11 +26,6 @@ const buttonCss = css`
   font-size: 30px;
 `
 
-// TODO: Bryan - finish this
-const rightButtonCss = css`
-  margin-right: 0;
-`
-
 export default function Counter({ title, dataType, backgroundColor, fontSize }) {
   const dispatch = useAppDispatch()
   const { home, guest } = useAppState()
@@ -58,7 +53,7 @@ export default function Counter({ title, dataType, backgroundColor, fontSize }) 
 
   return (
     <div css={[rowCss, rowBackgroundCss]}>
-      <div css={[columnCss, rightButtonCss]}>
+      <div css={columnCss}>
         <button css={buttonCss} onClick={incrementHomeCount}>+</button>
       </div>
       <div css={columnCss}>
