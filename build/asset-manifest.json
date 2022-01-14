@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/soccer-stats-tracker/static/css/main.cba68192.css",
+    "main.js": "/soccer-stats-tracker/static/js/main.ad04f13f.js",
+    "static/js/787.91c3affb.chunk.js": "/soccer-stats-tracker/static/js/787.91c3affb.chunk.js",
+    "index.html": "/soccer-stats-tracker/index.html",
+    "main.cba68192.css.map": "/soccer-stats-tracker/static/css/main.cba68192.css.map",
+    "main.ad04f13f.js.map": "/soccer-stats-tracker/static/js/main.ad04f13f.js.map",
+    "787.91c3affb.chunk.js.map": "/soccer-stats-tracker/static/js/787.91c3affb.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.cba68192.css",
+    "static/js/main.ad04f13f.js"
+  ]
+}
